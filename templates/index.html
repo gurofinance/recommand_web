@@ -1,0 +1,15 @@
+{% extends "layouts.html" %}
+    {% block body %}
+    {% include 'nav.html' %}    
+        <h1 style="color:red">result 내용</h1>
+            
+            <dl>
+                {% for i in data["results"] %}
+                    <dt>{{ i["original_title"] }}</dt>
+                    <dd><img src="http://image.tmdb.org/t/p/w200{{ i.poster_path }}" alt=""></dd>
+                {% endfor %}
+            </dl>
+    {% endblock %}
+    
+
+  
