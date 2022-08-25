@@ -1,14 +1,55 @@
 {% extends "layouts.html" %}
     {% block body %}
     {% include 'nav.html' %}    
-        <h1 style="color:red">result 내용</h1>
-            
-            <dl>
-                {% for i in data["results"] %}
-                    <dt>{{ i["original_title"] }}</dt>
-                    <dd><img src="http://image.tmdb.org/t/p/w200{{ i.poster_path }}" alt=""></dd>
-                {% endfor %}
-            </dl>
+    <div class="home">
+        <div class="category year">
+            <h1 class="heading">Top Movies of {{year}}</h1>
+            <div class="slider">
+                <div class="contain">
+                  <div class="row">
+                    <div class="row__inner">
+                      {% for i in top_year %}
+                      <div class="tile">
+                        <a href="/details/{{i.id}}">
+                            <img class="img-fluid" src="{{i.poster}}" alt="">
+                            <div class="tile__details">
+                              <div class="tile__title">
+                                {{i.title}}
+                              </div>
+                            </div>
+                        </a>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        {% for genre in top_genre %}
+            <div class="category">
+                <h1 class="heading">Top {{genre[1]}} Movies</h1>
+                <div class="slider">
+                    <div class="contain">
+                    <div class="row">
+                        <div class="row__inner">
+                        {% for i in genre[0] %}
+                        <div class="tile">
+                            <a href="/details/{{i.id}}">
+                                <img class="img-fluid" src="{{i.poster}}" alt="">
+                                <div class="tile__details">
+                                <div class="tile__title">
+                                    {{i.title}}
+                                </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     {% endblock %}
     
 
