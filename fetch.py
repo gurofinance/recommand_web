@@ -14,18 +14,21 @@ class movie:
         self.overview = overview
         self.back_drop = "http://image.tmdb.org/t/p/w200" + str(back_drop)
 
+
+        
+    
 class movie_collection:
     def __init__(self,results=[]):
         self.results = results
         
     def fetch(self,url):
-        result = json.loads(requests.get(url).text)["results"]
+        results = json.loads(requests.get(url).text)["results"]
         
         # print(results)
-        for num , i in enumerate(result):
+        for  i in results:
             if i["id"] and i["title"] and i["poster_path"] and i["vote_average"] and i["release_date"] and i["overview"] and i["backdrop_path"]:
                 self.results.append(movie(i["id"],i["title"],i["poster_path"],i["vote_average"],i["release_date"],i["overview"],i["backdrop_path"]))
-            print(movie(i["id"],i["title"],i["poster_path"],i["vote_average"],i["release_date"],i["overview"],i["backdrop_path"]))
+            # print(movie(i["id"],i["title"],i["poster_path"],i["vote_average"],i["release_date"],i["overview"],i["backdrop_path"]))
             
         # return results
 # if __name__ == "__main__":
